@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tarjetas · __TITULO__</title>
+<meta name="description" content="Tarjetas de memorización de la Unidad __UNIDAD__ (__TITULO__) de __CURSO__. Profesor Iván PB-IA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Lexend:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--g:#1B5E20;--g2:#2E7D32;--gl:#E8F2E9;--gm:#C8E6C9;--r:#B71C1C;--rl:#FDECEA;--y:#FFF3CD;--yb:#E0B33A;--b:#1F4E8C;--bl:#E7EFFA;--ink:#1d2321;--mut:#5d6b63;--bg:#F4F7F4;--card:#fff;--fs:17px;--lh:1.5;--font:Inter,system-ui,sans-serif}
+body.easy{--fs:20px;--lh:1.75;--font:Lexend,Inter,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0}
+html{background:var(--bg)}
+body{font-family:var(--font);font-size:var(--fs);line-height:var(--lh);color:var(--ink);background:var(--bg);-webkit-text-size-adjust:100%}
+body.easy{letter-spacing:.01em;word-spacing:.06em}
+header{background:var(--g);color:#fff;padding:14px 16px 0}
+.top{max-width:760px;margin:0 auto}
+.brand{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:4px 12px 4px 6px;font-size:13px;font-weight:600}
+.brand svg{flex:none}
+h1{font-size:22px;line-height:1.2;margin:10px 0 2px;font-weight:800}
+.sub{opacity:.85;font-size:14px;margin-bottom:10px}
+nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+nav button{flex:1 0 auto;border:0;background:transparent;color:#fff;opacity:.75;font:inherit;font-size:15px;font-weight:700;padding:10px 12px;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}
+nav button[aria-selected=true]{opacity:1;border-bottom-color:#FFD54F}
+main{max-width:760px;margin:0 auto;padding:14px 16px 40px}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+select,.chk{font:inherit;font-size:15px;border:1px solid #c9d6cb;border-radius:10px;background:#fff;padding:7px 10px;color:var(--ink)}
+.chk{display:inline-flex;align-items:center;gap:6px;cursor:pointer;user-select:none}
+.chk input{width:18px;height:18px;accent-color:var(--g2)}
+.prog{background:#fff;border:1px solid #dbe5dc;border-radius:12px;padding:10px 12px;margin-bottom:12px;font-size:14px}
+.boxes{display:flex;gap:4px;margin-top:6px}
+.boxes div{flex:1;text-align:center;border-radius:6px;padding:4px 0;font-weight:700;font-size:13px}
+.lbl{display:flex;justify-content:space-between;color:var(--mut);font-size:12.5px;margin-top:4px}
+.card{background:var(--card);border-radius:16px;box-shadow:0 2px 10px rgba(0,0,0,.08);border:1px solid #dbe5dc;padding:18px;min-height:240px;position:relative}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.chip{font-size:12.5px;font-weight:700;border-radius:999px;padding:3px 10px;background:var(--gl);color:var(--g)}
+.chip.ex{background:var(--y);color:#7a5a00;border:1px solid var(--yb)}
+.q{font-size:1.15em;font-weight:700;line-height:1.35}
+.a{margin-top:14px;padding-top:14px;border-top:2px dashed var(--gm)}
+.a img,.step img{display:block;max-width:100%;height:auto;margin:12px auto 0;border-radius:10px;border:1px solid #e3eae4}
+.hint{color:var(--mut);font-size:14px;margin-top:14px;text-align:center}
+.btns{display:flex;gap:10px;margin-top:14px}
+.btn{flex:1;font:inherit;font-weight:800;font-size:16px;border:0;border-radius:12px;padding:14px 10px;cursor:pointer;touch-action:manipulation}
+.btn.show{background:var(--g2);color:#fff}
+.btn.no{background:var(--rl);color:var(--r);border:2px solid #efb3ad}
+.btn.si{background:var(--gl);color:var(--g);border:2px solid #9ccc9f}
+.btn.ghost{background:#fff;color:var(--g);border:2px solid var(--gm)}
+.btn:focus-visible,nav button:focus-visible,select:focus-visible{outline:3px solid #FFB300;outline-offset:2px}
+.mf{font-size:2.2em;font-weight:800;color:var(--g);text-align:center;line-height:1.1;margin-top:6px}
+.mn{text-align:center;color:var(--mut);margin-bottom:6px}
+.mz{text-align:center;font-size:14px;color:var(--mut)}
+.task{background:var(--gl);border-radius:12px;padding:10px 12px;margin:12px 0;font-size:.92em}
+.step{border:1px solid #dbe5dc;border-radius:12px;margin-top:10px;overflow:hidden}
+.step h3{margin:0;font-size:15px;padding:9px 12px;background:#f7faf7;display:flex;align-items:center;gap:8px}
+.step h3 .n{background:var(--g2);color:#fff;border-radius:50%;width:24px;height:24px;display:inline-grid;place-items:center;font-size:13px;flex:none}
+.step .c{padding:10px 12px}
+.step.locked h3{color:var(--mut)}
+.step.locked .n{background:#9aa79d}
+.note{margin-top:10px;background:var(--y);border:1px solid var(--yb);border-radius:10px;padding:8px 10px;font-size:.92em}
+.vf{font-size:1.15em;font-weight:700;line-height:1.4;text-align:center;padding:18px 4px}
+.fb{margin-top:12px;border-radius:12px;padding:12px;font-size:.98em}
+.fb.ok{background:var(--gl);border:2px solid #9ccc9f}
+.fb.ko{background:var(--rl);border:2px solid #efb3ad}
+.fb b.t{display:block;font-size:1.05em;margin-bottom:4px}
+.done{text-align:center;padding:30px 10px}
+.done .big{font-size:42px}
+.help h2{font-size:18px;color:var(--g);margin:18px 0 6px}
+.help p,.help li{color:#2d3631}
+footer{text-align:center;color:var(--mut);font-size:12.5px;padding:10px 16px 30px}
+@media (max-width:480px){h1{font-size:19px}.card{padding:14px}.mf{font-size:1.9em}}
+</style>
+</head>
+<body>
+<header>
+ <div class="top">
+  <span class="brand"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#fff"/><g fill="none" stroke="#1B5E20" stroke-width="1.4"><ellipse cx="12" cy="12" rx="9" ry="3.6"/><ellipse cx="12" cy="12" rx="9" ry="3.6" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="3.6" transform="rotate(120 12 12)"/></g><circle cx="12" cy="12" r="1.8" fill="#1B5E20"/></svg>Aprende Química con Profesor Iván PB-IA</span>
+  <h1>Tarjetas · Unidad __UNIDAD__ · __TITULO__</h1>
+  <div class="sub">__CURSO__ · Repasa, comprueba y vuelve a las que fallas</div>
+  <nav role="tablist" aria-label="Modos">
+   <button role="tab" data-m="c" aria-selected="true">Conceptos</button>
+   <button role="tab" data-m="m" aria-selected="false">__TAB2__</button>
+   <button role="tab" data-m="e" aria-selected="false">Errores</button>
+   <button role="tab" data-m="h" aria-selected="false">Ayuda</button>
+  </nav>
+ </div>
+</header>
+<main>
+ <div class="bar" id="bar">
+  <select id="blk" aria-label="Bloque"></select>
+  <select id="len" aria-label="Duración de la sesión"><option value="10">Sesión corta (10)</option><option value="20">Sesión media (20)</option><option value="0">Todas</option></select>
+  <label class="chk"><input type="checkbox" id="easy"> Lectura fácil</label>
+ </div>
+ <div class="prog" id="prog"></div>
+ <section id="view" aria-live="polite"></section>
+</main>
+<footer>Desarrollado por Profesor Iván PB-IA · Contenido basado en la presentación de la Unidad __UNIDAD__. Tu progreso se guarda solo en este dispositivo.</footer>
+<script>
+const DATA=/*DATA*/;
+const M2=DATA.meta.modo2; const K=DATA.meta.clave;
+const $=s=>document.querySelector(s);
+const st={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let mode='c', easy=st.get(K+'_easy',false), sessLen=st.get(K+'_len',10), blk=st.get(K+'_blk','all');
+let queue=[], cur=null, phase=0, stats={ok:0,ko:0};
+const KEY={c:K+'_box_c',m:K+'_box_m',e:K+'_box_e'};
+function boxes(m){return st.get(KEY[m],{})}
+function setBox(m,id,v){const b=boxes(m);b[id]=v;st.set(KEY[m],b)}
+function pool(m){
+  let p = m==='c'?DATA.cards:(m==='m'?DATA.items:DATA.errs);
+  if(m==='c'&&blk!=='all') p=p.filter(x=>String(x.b)===String(blk));
+  if(easy) p=p.filter(x=>x.e);
+  return p;
+}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function build(){
+  const b=boxes(mode); const p=shuffle(pool(mode).slice());
+  p.sort((x,y)=>(b[x.id]||1)-(b[y.id]||1));
+  queue = sessLen? p.slice(0,sessLen):p;
+  stats={ok:0,ko:0}; next();
+}
+function next(){cur=queue.shift()||null; phase=0; render()}
+function answer(ok){
+  const b=boxes(mode); const v=b[cur.id]||1;
+  if(ok){setBox(mode,cur.id,Math.min(5,v+1)); stats.ok++}
+  else{setBox(mode,cur.id,1); stats.ko++; queue.splice(Math.min(3,queue.length),0,cur)}
+  next();
+}
+function progress(){
+  const p=pool(mode), b=boxes(mode); const cnt=[0,0,0,0,0];
+  p.forEach(x=>cnt[(b[x.id]||1)-1]++);
+  const cols=['#FDECEA','#FFF3CD','#FFF8E1','#E8F5E9','#C8E6C9'];
+  const tc=['#B71C1C','#7a5a00','#8a6d00','#2E7D32','#1B5E20'];
+  const mast=cnt[3]+cnt[4];
+  $('#prog').innerHTML=`<b>${mast} de ${p.length}</b> tarjetas dominadas · en esta sesión: ✔ ${stats.ok} · ✘ ${stats.ko} · quedan ${queue.length+(cur?1:0)}
+   <div class="boxes">${cnt.map((c,i)=>`<div style="background:${cols[i]};color:${tc[i]}" title="Caja ${i+1}">${c}</div>`).join('')}</div>
+   <div class="lbl"><span>Caja 1 · por aprender</span><span>Caja 5 · dominadas</span></div>`;
+}
+function chips(x){
+  let h=''; if(mode==='c') h+=`<span class="chip">${DATA.blocks[x.b]}</span>`;
+  if(x.ex) h+='<span class="chip ex">★ Pregunta de examen</span>';
+  if(mode==='m') h+=`<span class="chip ex">${M2.chip}</span>`;
+  return h?`<div class="chips">${h}</div>`:'';
+}
+function img(n,alt){return n?`<img src="img/${n}.jpg" alt="${alt}" loading="lazy">`:''}
+function doneView(){
+  return `<div class="card done"><div class="big">🎉</div><p><b>¡Sesión terminada!</b><br>Aciertos: ${stats.ok} · Fallos: ${stats.ko}</p>
+  <p class="hint">Las tarjetas que fallas vuelven a salir pronto; las que dominas, más tarde.</p>
+  <div class="btns"><button class="btn show" id="again">Otra sesión</button></div></div>`;
+}
+function render(){
+  document.body.classList.toggle('easy',easy);
+  $('#bar').style.display = mode==='h'?'none':'flex';
+  $('#prog').style.display = mode==='h'?'none':'block';
+  $('#blk').style.display = mode==='c'?'':'none';
+  const v=$('#view');
+  if(mode==='h'){v.innerHTML=HELP();return}
+  progress();
+  if(!cur){v.innerHTML=doneView(); $('#again').onclick=build; return}
+  if(mode==='c'){
+    v.innerHTML=`<article class="card">${chips(cur)}<div class="q">${cur.q}</div>
+     ${phase? `<div class="a">${cur.a}${img(cur.img,'Ilustración')}</div>
+       <div class="btns"><button class="btn no" id="no">✘ No lo sabía</button><button class="btn si" id="si">✔ Lo sabía</button></div>`
+     : `<p class="hint">Piensa la respuesta (o dila en voz alta) y después dale la vuelta.</p><div class="btns"><button class="btn show" id="flip">Ver respuesta</button></div>`}
+    </article>`;
+  } else if(mode==='m'){
+    const S=cur.steps.map(x=>[x.t,x.h,x.img||null]); const NS=S.length;
+    v.innerHTML=`<article class="card">${chips(cur)}<div class="mf">${cur.title}</div><div class="mn">${cur.sub||''}</div><div class="mz">${cur.info||''}</div>
+     <div class="task">${M2.tarea}</div>
+     ${S.map((s,i)=>`<div class="step ${i<phase?'':'locked'}"><h3><span class="n">${i+1}</span>${s[0]}</h3>${i<phase?`<div class="c">${s[1]}${s[2]?img(s[2],s[0]+' de '+cur.f):''}</div>`:''}</div>`).join('')}
+     ${phase>=NS && cur.nota? `<div class="note">💡 ${cur.nota}</div>`:''}
+     <div class="btns">${phase<NS? `<button class="btn show" id="flip">Destapar paso ${phase+1}</button>${phase<NS-1?'<button class="btn ghost" id="all">Ver todo</button>':''}`
+       : `<button class="btn no" id="no">✘ Me equivoqué</button><button class="btn si" id="si">✔ Lo hice bien</button>`}</div></article>`;
+  } else {
+    v.innerHTML=`<article class="card">${chips(cur)}<div class="hint" style="margin-top:0">¿Verdadero o falso?</div><div class="vf">«${cur.s}»</div>
+     ${phase? `<div class="fb ${phase===1?'ok':'ko'}"><b class="t">${phase===1?'✔ ¡Correcto!':'✘ No'} · Es ${cur.v?'VERDADERO':'FALSO'}</b>${cur.w}</div>
+        <div class="btns"><button class="btn show" id="cont">Siguiente</button></div>`
+      : `<div class="btns"><button class="btn si" id="vt">Verdadero</button><button class="btn no" id="vf">Falso</button></div>`}</article>`;
+  }
+  const on=(id,f)=>{const e=document.getElementById(id); if(e) e.onclick=f};
+  on('flip',()=>{phase++;render()});
+  on('all',()=>{phase=(cur.steps?cur.steps.length:5);render()});
+  on('si',()=>answer(true)); on('no',()=>answer(false));
+  on('vt',()=>{phase=(cur.v?1:2);render()}); on('vf',()=>{phase=(cur.v?2:1);render()});
+  on('cont',()=>answer(phase===1));
+}
+const HELP=()=>`<div class="card help">
+<h2>¿Cómo funcionan?</h2>
+<p>Cada tarjeta tiene una <b>pregunta</b>. Intenta responderla de memoria <b>antes</b> de darle la vuelta. Después sé sincero:</p>
+<ul><li><b>✔ Lo sabía</b>: la tarjeta sube de caja y tardará más en volver.</li><li><b>✘ No lo sabía</b>: vuelve a la caja 1 y te saldrá otra vez enseguida.</li></ul>
+<p>Las cajas van de la 1 (por aprender) a la 5 (dominadas). Cada sesión empieza por las que peor llevas. Tu progreso se guarda en este dispositivo.</p>
+<h2>Los tres modos</h2>
+<ul><li><b>Conceptos</b>: la teoría del tema en preguntas cortas. Las marcadas con <b>★ Pregunta de examen</b> son las que suelen caer.</li>
+<li><b>${M2.titulo}</b>: ${M2.ayuda}</li>
+<li><b>Errores típicos</b>: frases de verdadero o falso con los fallos que más restan puntos.</li></ul>
+<h2>Consejos</h2>
+<ul><li>Mejor <b>10 minutos cada día</b> que una hora el día antes del examen.</li><li>Di la respuesta en voz alta o escríbela: así se recuerda mejor.</li>
+<li><b>Lectura fácil</b> pone letra más grande y espaciada y deja solo las tarjetas esenciales.</li></ul>
+<div class="btns"><button class="btn ghost" id="reset">Borrar mi progreso</button></div></div>`;
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('nav button').forEach(x=>x.setAttribute('aria-selected',x===b));
+  mode=b.dataset.m; if(mode==='h'){render(); const r=document.getElementById('reset'); if(r) r.onclick=()=>{if(confirmReset()){Object.values(KEY).forEach(k=>st.set(k,{})); r.textContent='Progreso borrado'}}; return} build();
+});
+function confirmReset(){const r=document.getElementById('reset'); if(r.dataset.c){return true} r.dataset.c=1; r.textContent='Pulsa otra vez para confirmar'; return false}
+const sel=$('#blk'); sel.innerHTML='<option value="all">Todos los bloques</option>'+DATA.blocks.map((b,i)=>`<option value="${i}">${i+1}. ${b}</option>`).join('');
+sel.value=blk; sel.onchange=()=>{blk=sel.value; st.set(K+'_blk',blk); build()};
+$('#len').value=String(sessLen); $('#len').onchange=e=>{sessLen=+e.target.value; st.set(K+'_len',sessLen); build()};
+$('#easy').checked=easy; $('#easy').onchange=e=>{easy=e.target.checked; st.set(K+'_easy',easy); build()};
+build();
+</script>
+</body>
+</html>
